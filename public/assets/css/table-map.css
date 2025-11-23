@@ -45,8 +45,8 @@ body {
     align-items: center;
     gap: 8px;
     padding: 10px 16px;
-    background-color: white;
-    border: 2px solid #e5e7eb;
+    background-color: #FFFFFF;
+    border: 2px solid #D1D5DB;
     border-radius: 8px;
     font-family: 'Inter', sans-serif;
     font-size: 14px;
@@ -57,19 +57,19 @@ body {
 }
 
 .filter-btn:hover {
-    background-color: #f9fafb;
-    border-color: #d1d5db;
+    background-color: #E5E7EB;
+    border-color: #4B5563;
 }
 
 .filter-btn.active {
-    background-color: #f3f4f6;
-    border-color: #9ca3af;
+    background-color: #E5E7EB;
+    border-color: #4B5563;
     color: #111827;
 }
 
 .filter-btn .count {
     font-weight: 400;
-    color: #6b7280;
+    color: #111827;
 }
 
 /* Contenedor de mesas */
