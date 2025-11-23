@@ -1,14 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
+    <title>Crear Cuenta - POS Restaurant</title>
     <link rel="stylesheet" href="../assets/css/register.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-    
+    <div class="register-page">
+        <div class="register-container">
+            <!-- Header -->
+            <div class="header">
+                <h1 class="heading">Crear Cuenta</h1>
+                <p class="subheading">Regístrate en el sistema</p>
+            </div>
+
+            <!-- Form -->
+            <form id="registerForm" class="register-form">
+                <!-- Nombre Completo -->
+                <div class="form-group">
+                    <label for="nombreCompleto" class="form-label">Nombre Completo</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="#1F2937"/>
+                            <path d="M10 12.5C5.58172 12.5 2 15.3579 2 18.75C2 19.4403 2.55964 20 3.25 20H16.75C17.4404 20 18 19.4403 18 18.75C18 15.3579 14.4183 12.5 10 12.5Z" fill="#1F2937"/>
+                        </svg>
+                        <input 
+                            type="text" 
+                            id="nombreCompleto" 
+                            name="nombreCompleto" 
+                            class="form-input" 
+                            placeholder="Juan Pérez"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <!-- Correo Electrónico -->
+                <div class="form-group">
+                    <label for="correoElectronico" class="form-label">Correo Electrónico</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 5C2 3.89543 2.89543 3 4 3H16C17.1046 3 18 3.89543 18 5V15C18 16.1046 17.1046 17 16 17H4C2.89543 17 2 16.1046 2 15V5Z" fill="#1F2937"/>
+                            <path d="M2 5L10 11L18 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <input 
+                            type="email" 
+                            id="correoElectronico" 
+                            name="correoElectronico" 
+                            class="form-input" 
+                            placeholder="tu@email.com"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <!-- Rol -->
+                <div class="form-group">
+                    <label for="rol" class="form-label">Rol</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 6C9 5.44772 9.44772 5 10 5H16C16.5523 5 17 5.44772 17 6C17 6.55228 16.5523 7 16 7H10C9.44772 7 9 6.55228 9 6Z" fill="#1F2937"/>
+                            <path d="M9 10C9 9.44772 9.44772 9 10 9H16C16.5523 9 17 9.44772 17 10C17 10.5523 16.5523 11 16 11H10C9.44772 11 9 10.5523 9 10Z" fill="#1F2937"/>
+                            <path d="M9 14C9 13.4477 9.44772 13 10 13H16C16.5523 13 17 13.4477 17 14C17 14.5523 16.5523 15 16 15H10C9.44772 15 9 14.5523 9 14Z" fill="#1F2937"/>
+                            <path d="M5 6C5 5.44772 5.44772 5 6 5C6.55228 5 7 5.44772 7 6C7 6.55228 6.55228 7 6 7C5.44772 7 5 6.55228 5 6Z" fill="#1F2937"/>
+                            <path d="M5 10C5 9.44772 5.44772 9 6 9C6.55228 9 7 9.44772 7 10C7 10.5523 6.55228 11 6 11C5.44772 11 5 10.5523 5 10Z" fill="#1F2937"/>
+                            <path d="M5 14C5 13.4477 5.44772 13 6 13C6.55228 13 7 13.4477 7 14C7 14.5523 6.55228 15 6 15C5.44772 15 5 14.5523 5 14Z" fill="#1F2937"/>
+                        </svg>
+                        <select 
+                            id="rol" 
+                            name="rol" 
+                            class="form-select"
+                            required
+                        >
+                            <option value="">Seleccionar rol</option>
+                            <option value="dueno">Dueño</option>
+                            <option value="gerente">Gerente</option>
+                            <option value="cajero">Cajero</option>
+                            <option value="mesero">Mesero</option>
+                            <option value="cocinero">Cocinero</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="form-group">
+                    <label for="contrasena" class="form-label">Contraseña</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 8V6C5 3.23858 7.23858 1 10 1C12.7614 1 15 3.23858 15 6V8H16C17.1046 8 18 8.89543 18 10V17C18 18.1046 17.1046 19 16 19H4C2.89543 19 2 18.1046 2 17V10C2 8.89543 2.89543 8 4 8H5Z" fill="#1F2937"/>
+                        </svg>
+                        <input 
+                            type="password" 
+                            id="contrasena" 
+                            name="contrasena" 
+                            class="form-input" 
+                            placeholder="••••••••"
+                            required
+                            minlength="8"
+                        >
+                    </div>
+                </div>
+
+                <!-- Confirmar Contraseña -->
+                <div class="form-group">
+                    <label for="confirmarContrasena" class="form-label">Confirmar Contraseña</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 8V6C5 3.23858 7.23858 1 10 1C12.7614 1 15 3.23858 15 6V8H16C17.1046 8 18 8.89543 18 10V17C18 18.1046 17.1046 19 16 19H4C2.89543 19 2 18.1046 2 17V10C2 8.89543 2.89543 8 4 8H5Z" fill="#1F2937"/>
+                        </svg>
+                        <input 
+                            type="password" 
+                            id="confirmarContrasena" 
+                            name="confirmarContrasena" 
+                            class="form-input" 
+                            placeholder="••••••••"
+                            required
+                            minlength="8"
+                        >
+                    </div>
+                </div>
+
+                <!-- Mensaje de error -->
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+                <!-- Botón de Envío -->
+                <button type="submit" class="submit-button" id="submitButton">
+                    <svg class="button-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="white"/>
+                        <path d="M10 12.5C5.58172 12.5 2 15.3579 2 18.75C2 19.4403 2.55964 20 3.25 20H16.75C17.4404 20 18 19.4403 18 18.75C18 15.3579 14.4183 12.5 10 12.5Z" fill="white"/>
+                    </svg>
+                    <span class="button-text">Crear Cuenta</span>
+                </button>
+            </form>
+
+            <!-- Footer -->
+            <div class="footer">
+                <span class="footer-text">¿Ya tienes cuenta?</span>
+                <a href="login.html" class="footer-link">Inicia sesión aquí</a>
+            </div>
+        </div>
+    </div>
+
     <script src="../js/register.js"></script>
 </body>
 </html>
