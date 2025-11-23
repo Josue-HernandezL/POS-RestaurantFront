@@ -102,9 +102,19 @@
 
 			// Éxito esperado: { exito, mensaje, datos: { token, ... } }
 			if (data && data.exito && data.datos && data.datos.token) {
-				try { localStorage.setItem('token', data.datos.token); } catch(_) {}
+				try { 
+					localStorage.setItem('token', data.datos.token);
+					// Guardar información del usuario
+					const userData = {
+						nombreCompleto: data.datos.nombreCompleto,
+						correoElectronico: data.datos.correoElectronico,
+						rol: data.datos.rol,
+						id: data.datos._id || data.datos.id
+					};
+					localStorage.setItem('user', JSON.stringify(userData));
+				} catch(_) {}
 				alert(`✅ Login exitoso!\nUsuario: ${data.datos.nombreCompleto}\nRol: ${data.datos.rol}`);
-				window.location.href = '/dashboard';
+				window.location.href = '/dashboard.html';
 			}
 		} catch (err) {
 			setFormError('Fallo de red, intenta nuevamente');
