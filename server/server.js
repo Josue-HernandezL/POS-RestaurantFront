@@ -36,7 +36,7 @@ app.get('/registro', (req, res) => {
 
 // Principal (dashboard)
 app.get('/dashboard', (req, res) => {
-  const indexPath = path.join(__dirname, '..', 'public', 'views', 'dashboard.html');
+  const indexPath = path.join(__dirname, '..', 'public', 'dashboard.html');
   res.sendFile(indexPath);
 });
 
@@ -89,7 +89,7 @@ app.get('/usuarios-roles', (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
 });

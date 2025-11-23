@@ -1,13 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de sesion</title>
-    <link rel="stylesheet" href="../assets/css/login.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión - Sistema POS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/login.css" />
 </head>
-<body>
-    
+<body class="login-body">
+    <main class="login-main">
+        <section class="login-card" role="form" aria-labelledby="login-title">
+            <header class="login-header">
+                <h1 id="login-title" class="login-title">Sistema POS</h1>
+                <p class="login-subtitle">Inicia sesión para continuar</p>
+            </header>
+
+            <form id="loginForm" class="login-form" novalidate>
+                <div class="form-group">
+                    <label for="correoElectronico" class="form-label">Correo Electrónico</label>
+                    <input
+                        type="email"
+                        id="correoElectronico"
+                        name="correoElectronico"
+                        class="form-input"
+                        placeholder="tu@email.com"
+                        autocomplete="email"
+                        required
+                    />
+                    <p id="correoElectronicoValidation" class="validation-message" data-for="correoElectronico"></p>
+                </div>
+                <div class="form-group">
+                    <label for="contrasena" class="form-label">Contraseña</label>
+                    <input
+                        type="password"
+                        id="contrasena"
+                        name="contrasena"
+                        class="form-input"
+                        placeholder="••••••••"
+                        autocomplete="current-password"
+                        required
+                        minlength="6"
+                    />
+                    <p id="contrasenaValidation" class="validation-message" data-for="contrasena"></p>
+                </div>
+                <button type="submit" class="submit-btn" id="loginSubmit">
+                    <span class="btn-icon" aria-hidden="true">↪</span>
+                    <span>Ingresar</span>
+                </button>
+                <p class="form-error" id="formError" aria-live="polite" hidden></p>
+            </form>
+
+            <footer class="login-footer">
+                <p class="footer-text">¿No tienes cuenta? <a href="../views/register.html" class="footer-link">Regístrate aquí</a></p>
+            </footer>
+        </section>
+    </main>
 
     <script src="../js/login.js"></script>
 </body>
