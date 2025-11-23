@@ -12,8 +12,101 @@
 </head>
 <body>
     <main class="page-content">
-        <h1>Mapa de Mesas</h1>
+        <header class="tables-header">
+            <h1>Mapa de Mesas</h1>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    Todas <span class="count" id="count-all">0</span>
+                </button>
+                <button class="filter-btn" data-filter="libre">
+                    Libres <span class="count" id="count-libre">0</span>
+                </button>
+                <button class="filter-btn" data-filter="ocupada">
+                    Ocupadas <span class="count" id="count-ocupada">0</span>
+                </button>
+                <button class="filter-btn" data-filter="reservada">
+                    Reservadas <span class="count" id="count-reservada">0</span>
+                </button>
+                <button class="filter-btn" data-filter="en_limpieza">
+                    En Limpieza <span class="count" id="count-en_limpieza">0</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="tables-container">
+            <div class="tables-section">
+                <p class="section-title">Salón Principal / Terraza</p>
+                <div class="tables-grid" id="tablesGrid">
+                    <!-- Las mesas se cargarán dinámicamente aquí -->
+                </div>
+            </div>
+        </div>
     </main>
+
+    <!-- Modal lateral para detalles de mesa -->
+    <aside class="table-modal" id="tableModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTableName">Mesa 1</h2>
+                <button class="close-btn" id="closeModal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="modal-section">
+                <div class="info-card">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <div class="info-text">
+                        <p class="info-label">Capacidad</p>
+                        <p class="info-value" id="modalCapacity">4 personas</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-text">
+                        <p class="info-label">Sección</p>
+                        <p class="info-value" id="modalSection">Salón Principal</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <p class="section-label">Cambiar Estado:</p>
+                <div class="status-buttons">
+                    <button class="status-btn" data-status="libre">
+                        Libre
+                    </button>
+                    <button class="status-btn" data-status="ocupada">
+                        Ocupada
+                    </button>
+                    <button class="status-btn" data-status="reservada">
+                        Reservada
+                    </button>
+                    <button class="status-btn" data-status="en_limpieza">
+                        En Limpieza
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="action-btn primary" id="takeOrderBtn">
+                    Tomar Pedido
+                </button>
+                <button class="action-btn secondary" id="processPaymentBtn">
+                    Procesar Pago
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <div class="modal-overlay" id="modalOverlay"></div>
 
     <script src="../js/navbar.js"></script>
     <script src="../js/table-map.js"></script>
