@@ -1,0 +1,123 @@
+/* Diseño Login basado en Figma (448x482 card) */
+:root {
+	--color-bg-body: #f5f7fa;
+	--color-text: #1F2937;
+	--color-text-muted: #6B7280;
+	--color-border: #1F2937;
+	--color-focus: #2563EB;
+	--color-error: #DC2626;
+	--color-card-bg: #ffffff;
+	--color-btn-bg: #0D1117; /* similar a bg-gray-900 oscura */
+	--color-btn-bg-hover: #1F2937;
+	--radius-sm: 6px;
+	--radius-md: 8px;
+	--shadow-card: 0 6px 18px rgba(0,0,0,0.08);
+	--transition: 0.18s ease;
+	font-family: 'Inter', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body.login-body {
+	margin: 0;
+	font-family: 'Inter', system-ui, sans-serif;
+	background: var(--color-bg-body);
+	color: var(--color-text);
+	-webkit-font-smoothing: antialiased;
+}
+
+.login-main {
+	min-height: 100dvh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 32px 16px;
+}
+
+.login-card {
+	width: 448px;
+	height: 482px;
+	background: var(--color-card-bg);
+	border: 3px solid var(--color-border);
+	border-radius: var(--radius-md);
+	padding: 36px 36px 28px 36px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	box-shadow: var(--shadow-card);
+	position: relative;
+}
+
+.login-header { margin-bottom: 32px; }
+.login-title {
+	margin: 0 0 12px 0;
+	font-size: 25.5px;
+	font-weight: 700;
+	line-height: 36px;
+	text-align: center;
+}
+.login-subtitle {
+	margin: 0;
+	font-size: 13.6px;
+	line-height: 24px;
+	text-align: center;
+	font-weight: 400;
+	color: var(--color-text-muted);
+}
+
+.login-form { display: flex; flex-direction: column; gap: 24px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-label { font-size: 11.9px; font-weight: 500; }
+
+.form-input {
+	width: 100%;
+	height: 51.556px;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	padding: 13px 17px;
+	font-size: 16px;
+	font-weight: 500;
+	background: #fff;
+	color: var(--color-text);
+	transition: var(--transition);
+}
+.form-input::placeholder { color: #cccccc; }
+.form-input:focus { outline: 0; border-color: var(--color-focus); box-shadow: 0 0 0 3px rgba(37,99,235,.15); }
+
+.validation-message { margin: 0; font-size: 12px; line-height: 16px; color: var(--color-error); display: none; }
+.validation-message.visible { display: block; }
+.form-error { margin: 8px 0 0 0; font-size: 13px; font-weight: 500; color: var(--color-error); }
+
+.submit-btn {
+	margin-top: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	height: 60px;
+	width: 100%;
+	background: var(--color-btn-bg);
+	color: #fff;
+	font-size: 15.3px;
+	font-weight: 700;
+	border: none;
+	border-radius: var(--radius-md);
+	cursor: pointer;
+	letter-spacing: .3px;
+	transition: var(--transition);
+}
+.submit-btn:hover { background: var(--color-btn-bg-hover); }
+.submit-btn:active { transform: translateY(1px); }
+.submit-btn:disabled { opacity: .55; cursor: not-allowed; }
+.btn-icon { font-size: 18px; line-height: 1; }
+
+.login-footer { margin-top: auto; padding-top: 28px; }
+.footer-text { margin: 0; font-size: 11.9px; color: var(--color-text-muted); text-align: center; }
+.footer-link { font-weight: 700; color: var(--color-text); text-decoration: none; }
+.footer-link:hover { text-decoration: underline; }
+
+@media (max-width: 520px) {
+	.login-card { width: 100%; height: auto; padding: 28px 24px 24px; }
+	.login-title { font-size: 23px; line-height: 32px; }
+	.login-subtitle { font-size: 12.5px; }
+}
+
