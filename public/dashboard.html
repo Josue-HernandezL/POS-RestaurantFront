@@ -1,14 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard - Sistema POS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/navbar.css">
     <link rel="stylesheet" href="./assets/css/dashboard.css">
 </head>
 <body>
-    
+    <main class="dashboard-content">
+        <h1>Dashboard</h1>
+        <p>Bienvenido al Sistema POS del Restaurante</p>
+        
+        <div class="cards-grid">
+            <div class="card">
+                <h2>📊 Ventas del Día</h2>
+                <p>Consulta las estadísticas de ventas actuales</p>
+            </div>
+            <div class="card">
+                <h2>🍽️ Órdenes Activas</h2>
+                <p>Gestiona las órdenes en proceso</p>
+            </div>
+            <div class="card">
+                <h2>👥 Personal</h2>
+                <p>Administra usuarios y roles del sistema</p>
+            </div>
+            <div class="card">
+                <h2>📅 Reservaciones</h2>
+                <p>Revisa las reservaciones del día</p>
+            </div>
+        </div>
+    </main>
 
+    <script src="./js/navbar.js"></script>
     <script src="./js/dashboard.js"></script>
 </body>
 </html>

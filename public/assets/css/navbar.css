@@ -1,0 +1,250 @@
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 256px;
+    height: 100vh;
+    background: #ffffff;
+    border-right: 2px solid #1f2937;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* Header */
+.navbar-header {
+    padding: 24px;
+    border-bottom: 2px solid #1f2937;
+    flex-shrink: 0;
+}
+
+.navbar-title {
+    font-size: 20.4px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    color: #1f2937;
+    margin: 0;
+    line-height: 32px;
+}
+
+.navbar-subtitle {
+    font-size: 11.9px;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    color: #6b7280;
+    margin: 4px 0 0 0;
+    line-height: 20px;
+}
+
+/* Navigation Menu */
+.navbar-menu {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border: 2px solid #D1D5DB;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #1f2937;
+    font-size: 13.6px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    border-radius: 8px;
+    border: 2px solid #000;
+    background: #000;
+    color: white;
+}
+
+.nav-item.active {
+    border-radius: 8px;
+    border: 2px solid #000;
+    background: #000;
+    color: white;
+}
+
+.nav-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: #1f2937;
+}
+
+.nav-icon:hover {
+    color: white;
+}
+
+.nav-item:hover .nav-icon,
+.nav-item.active .nav-icon {
+    color: white;
+}
+
+.nav-text {
+    line-height: 24px;
+}
+
+/* Footer - User Profile */
+.navbar-footer {
+    padding: 16px;
+    border-top: 2px solid #1f2937;
+    flex-shrink: 0;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #1f2937;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.user-initials {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+}
+
+.user-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.user-name {
+    font-size: 13.6px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    color: #1f2937;
+    margin: 0;
+    line-height: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-role {
+    font-size: 11.9px;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    color: #6b7280;
+    margin: 0;
+    line-height: 16px;
+    text-transform: capitalize;
+}
+
+/* Logout Button */
+.logout-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 18px;
+    border: 2px solid #1f2937;
+    border-radius: 8px;
+    background: white;
+    color: #1f2937;
+    font-size: 13.6px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.logout-button:hover {
+    background: #1f2937;
+    color: white;
+}
+
+.logout-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* Layout con navbar */
+body.has-navbar {
+    margin-left: 256px;
+    transition: margin-left 0.3s ease;
+}
+
+/* Scrollbar personalizado para el navbar */
+.navbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.navbar::-webkit-scrollbar-track {
+    background: #f3f4f6;
+}
+
+.navbar::-webkit-scrollbar-thumb {
+    background: #9ca3af;
+    border-radius: 3px;
+}
+
+.navbar::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .navbar.open {
+        transform: translateX(0);
+    }
+    
+    body.has-navbar {
+        margin-left: 0;
+    }
+    
+    /* Overlay para cerrar el menú en móvil */
+    .navbar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+    
+    .navbar-overlay.show {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        width: 100%;
+        max-width: 280px;
+    }
+}
