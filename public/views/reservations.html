@@ -4,17 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservaciones - Sistema POS</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/navbar.css">
     <link rel="stylesheet" href="../assets/css/reservations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <main class="page-content">
-        <h1>Reservaciones</h1>
-    </main>
+    <div class="reservations-container">
+        <!-- Header -->
+        <div class="reservations-header">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1 class="header-title">Reservaciones</h1>
+                    <p class="header-subtitle">Gestiona las reservaciones del restaurante</p>
+                </div>
+                <button class="btn-new-reservation" id="btnNewReservation">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Nueva Reservación
+                </button>
+            </div>
+        </div>
 
+        <!-- Reservations Grid -->
+        <div class="reservations-content">
+            <div class="reservations-grid" id="reservationsGrid">
+                <!-- Las tarjetas se generarán dinámicamente aquí -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Nueva/Editar Reservación -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Nueva Reservación</h2>
+            </div>
+            <form class="modal-form" id="reservationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Nombre del Cliente *</label>
+                        <input type="text" class="form-input" id="inputName" placeholder="Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Teléfono *</label>
+                        <input type="tel" class="form-input" id="inputPhone" placeholder="555-1234" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Fecha *</label>
+                        <input type="date" class="form-input" id="inputDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Hora *</label>
+                        <input type="time" class="form-input" id="inputTime" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Número de Personas</label>
+                        <input type="number" class="form-input" id="inputPeople" value="2" min="1" max="20" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mesa (Opcional)</label>
+                        <select class="form-input" id="inputTable">
+                            <option value="">Sin asignar</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group-full">
+                    <label class="form-label">Notas</label>
+                    <textarea class="form-textarea" id="inputNotes" placeholder="Alergias, preferencias especiales, etc." rows="3"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit" id="btnSubmit">
+                        <span id="submitText">Crear Reservación</span>
+                    </button>
+                    <button type="button" class="btn-cancel" id="btnCancel">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+        
     <script src="../js/navbar.js"></script>
     <script src="../js/reservations.js"></script>
 </body>
