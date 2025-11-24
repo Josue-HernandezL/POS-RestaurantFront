@@ -12,7 +12,41 @@
 </head>
 <body>
     <main class="page-content">
-        <h1>Cocina (KDS)</h1>
+        <!-- Header con título y filtros -->
+        <div class="kitchen-header">
+            <div class="header-title">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"></path>
+                    <line x1="6" y1="17" x2="18" y2="17"></line>
+                </svg>
+                <h1>Pantalla de Cocina</h1>
+            </div>
+            
+            <!-- Filtros de estado -->
+            <div class="status-filters">
+                <button class="filter-btn active" data-filter="all">
+                    <span>Todas</span>
+                    <span class="count" id="countAll">(0)</span>
+                </button>
+                <button class="filter-btn" data-filter="pendiente">
+                    <span>Pendientes</span>
+                    <span class="count" id="countPendiente">(0)</span>
+                </button>
+                <button class="filter-btn" data-filter="en_preparacion">
+                    <span>Preparando</span>
+                    <span class="count" id="countPreparando">(0)</span>
+                </button>
+                <button class="filter-btn" data-filter="listo">
+                    <span>Listas</span>
+                    <span class="count" id="countListo">(0)</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Grid de pedidos -->
+        <div class="orders-grid" id="ordersGrid">
+            <!-- Las tarjetas de pedidos se generarán dinámicamente -->
+        </div>
     </main>
 
     <script src="../js/navbar.js"></script>

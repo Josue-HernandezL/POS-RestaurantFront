@@ -1,0 +1,367 @@
+/* Kitchen.css - Estilos para la pantalla de cocina (KDS) */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F9FAFB;
+    color: #111827;
+}
+
+.page-content {
+    padding: 0;
+    min-height: 100vh;
+    background-color: #F9FAFB;
+}
+
+/* Header de cocina */
+.kitchen-header {
+    background-color: #FFFFFF;
+    border-bottom: 2px solid #111827;
+    padding: 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.header-title svg {
+    width: 32px;
+    height: 32px;
+    color: #111827;
+}
+
+.header-title h1 {
+    font-size: 25.5px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+/* Filtros de estado */
+.status-filters {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 14px 20px;
+    border: 2px solid #D1D5DB;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    color: #111827;
+    font-family: 'Inter', sans-serif;
+    font-size: 13.6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    background-color: #F9FAFB;
+    border-color: #9CA3AF;
+}
+
+.filter-btn.active {
+    background-color: #111827;
+    border-color: #111827;
+    color: #FFFFFF;
+}
+
+.filter-btn .count {
+    opacity: 0.8;
+}
+
+/* Grid de pedidos */
+.orders-grid {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(355px, 1fr));
+    gap: 24px;
+    align-items: start;
+}
+
+/* Tarjeta de pedido */
+.order-card {
+    background-color: #FEF3C7;
+    border: 4px solid #EAB308;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.order-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Estados de tarjetas */
+.order-card.pendiente {
+    background-color: #FED7AA;
+    border-color: #EA580C;
+}
+
+.order-card.en_preparacion {
+    background-color: #FEF3C7;
+    border-color: #EAB308;
+}
+
+.order-card.listo {
+    background-color: #D1FAE5;
+    border-color: #10B981;
+}
+
+/* Header de la tarjeta */
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.order-info h3 {
+    font-size: 20.4px;
+    font-weight: 700;
+    color: #78350F;
+    margin-bottom: 4px;
+}
+
+.order-info p {
+    font-size: 11.9px;
+    color: #92400E;
+    font-weight: 400;
+}
+
+/* Timer */
+.order-timer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.order-timer svg {
+    width: 20px;
+    height: 20px;
+    color: #78350F;
+}
+
+.order-timer span {
+    font-size: 13.6px;
+    font-weight: 700;
+    color: #78350F;
+}
+
+.order-timer.warning {
+    color: #DC2626;
+}
+
+.order-timer.warning svg,
+.order-timer.warning span {
+    color: #DC2626;
+}
+
+/* Items del pedido */
+.order-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.order-item {
+    font-size: 13.6px;
+    font-weight: 500;
+    color: #78350F;
+    display: flex;
+    align-items: flex-start;
+}
+
+.order-item .quantity {
+    min-width: 20px;
+}
+
+.order-item .item-name {
+    flex: 1;
+}
+
+/* Observaciones */
+.order-observations {
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    font-size: 12px;
+    color: #92400E;
+    font-style: italic;
+}
+
+/* Bot\u00f3n de acci\u00f3n */
+.order-action {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #111827;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    color: #78350F;
+    font-family: 'Inter', sans-serif;
+    font-size: 13.6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.order-action:hover {
+    background-color: #F9FAFB;
+}
+
+.order-action:active {
+    transform: scale(0.98);
+}
+
+.order-action.ready {
+    background-color: #111827;
+    color: #FFFFFF;
+}
+
+.order-action.ready:hover {
+    background-color: #374151;
+}
+
+.order-action svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Mensaje vac\u00edo */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #6B7280;
+}
+
+.empty-state svg {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #374151;
+}
+
+.empty-state p {
+    font-size: 14px;
+}
+
+/* Loading spinner */
+.loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #E5E7EB;
+    border-top-color: #111827;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Notificaciones */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #10B981;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    z-index: 10000;
+    animation: slideIn 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.notification.error {
+    background-color: #DC2626;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+/* Responsive */
+@media (max-width: 1280px) {
+    .orders-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .page-content {
+        margin-left: 0;
+    }
+    
+    .orders-grid {
+        grid-template-columns: 1fr;
+        padding: 16px;
+    }
+    
+    .kitchen-header {
+        padding: 16px;
+    }
+    
+    .status-filters {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+}
