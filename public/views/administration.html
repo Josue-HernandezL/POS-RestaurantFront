@@ -12,7 +12,119 @@
 </head>
 <body>
     <main class="page-content">
-        <h1>Administración</h1>
+        <div class="admin-container">
+            <!-- Header -->
+            <div class="admin-header">
+                <h1>Configuración</h1>
+                <p class="header-subtitle">Administra la configuración del sistema</p>
+            </div>
+
+            <!-- Content -->
+            <div class="admin-content">
+                <!-- Información del Restaurante -->
+                <div class="config-card">
+                    <div class="card-header">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <h2>Información del Restaurante</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="restaurantName">Nombre del Restaurante</label>
+                            <input type="text" id="restaurantName" class="form-input" placeholder="Mi Restaurante">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Dirección</label>
+                            <input type="text" id="address" class="form-input" placeholder="Calle Principal 123">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" class="form-input" placeholder="555-1234">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notificaciones -->
+                <div class="config-card">
+                    <div class="card-header">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 8C18 6.4087 17.3679 4.88258 16.2426 3.75736C15.1174 2.63214 13.5913 2 12 2C10.4087 2 8.88258 2.63214 7.75736 3.75736C6.63214 4.88258 6 6.4087 6 8C6 15 3 17 3 17H21C21 17 18 15 18 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M13.73 21C13.5542 21.3031 13.3019 21.5547 12.9982 21.7295C12.6946 21.9044 12.3504 21.9965 12 21.9965C11.6496 21.9965 11.3054 21.9044 11.0018 21.7295C10.6982 21.5547 10.4458 21.3031 10.27 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <h2>Notificaciones</h2>
+                    </div>
+                    <div class="card-body">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="notifyOrders" class="checkbox-input" checked>
+                            <div class="checkbox-content">
+                                <span class="checkbox-title">Nuevas Órdenes</span>
+                                <span class="checkbox-description">Recibir notificaciones de nuevas órdenes</span>
+                            </div>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="notifyReservations" class="checkbox-input" checked>
+                            <div class="checkbox-content">
+                                <span class="checkbox-title">Reservaciones</span>
+                                <span class="checkbox-description">Notificaciones de nuevas reservaciones</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Configuración de Impuestos -->
+                <div class="config-card">
+                    <div class="card-header">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M16 8V16M12 11V16M8 14V16M6 20H18C18.5304 20 19.0391 19.7893 19.4142 19.4142C19.7893 19.0391 20 18.5304 20 18V6C20 5.46957 19.7893 4.96086 19.4142 4.58579C19.0391 4.21071 18.5304 4 18 4H6C5.46957 4 4.96086 4.21071 4.58579 4.58579C4.21071 4.96086 4 5.46957 4 6V18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <h2>Configuración de Impuestos</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="taxPercentage">Porcentaje de IVA (%)</label>
+                            <input type="number" id="taxPercentage" class="form-input" min="0" max="100" step="0.01" placeholder="16">
+                            <p class="form-help">Este porcentaje se aplicará a todas las órdenes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Opciones de Propina -->
+                <div class="config-card">
+                    <div class="card-header">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V11H13V17ZM13 9H11V7H13V9Z" fill="currentColor"/>
+                        </svg>
+                        <h2>Opciones de Propina</h2>
+                    </div>
+                    <div class="card-body">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="tip10" class="checkbox-input" checked>
+                            <div class="checkbox-content">
+                                <span class="checkbox-title">Propina sugerida 10%</span>
+                            </div>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="tip15" class="checkbox-input" checked>
+                            <div class="checkbox-content">
+                                <span class="checkbox-title">Propina sugerida 15%</span>
+                            </div>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="tip20" class="checkbox-input" checked>
+                            <div class="checkbox-content">
+                                <span class="checkbox-title">Propina sugerida 20%</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Botón Guardar -->
+                <button id="saveConfigBtn" class="save-btn">
+                    Guardar Configuración
+                </button>
+            </div>
+        </div>
     </main>
 
     <script src="../js/navbar.js"></script>

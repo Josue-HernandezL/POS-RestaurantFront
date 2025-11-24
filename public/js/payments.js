@@ -1,4 +1,10 @@
 const API_URL = 'https://pos-restaurante.onrender.com/api';
+const CONFIG_CACHE_KEY = 'posRestaurantConfig';
+const DEFAULT_TIP_OPTIONS = [0, 10, 15, 20];
+
+let systemConfig = null;
+let configuredTipOptions = [...DEFAULT_TIP_OPTIONS];
+let ivaPercentage = 16;
 
 // Estado global
 let selectedTableId = null;
@@ -31,6 +37,159 @@ const taxElement = document.getElementById('tax');
 const tipAmountElement = document.getElementById('tipAmount');
 const totalAmountElement = document.getElementById('totalAmount');
 const processPaymentBtn = document.getElementById('processPaymentBtn');
+
+function getCachedConfiguration() {
+    try {
+        const raw = localStorage.getItem(CONFIG_CACHE_KEY);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        return parsed?.datos || parsed?.data || null;
+    } catch (error) {
+        console.warn('No se pudo leer la configuración cacheada', error);
+        return null;
+    }
+}
+
+function cacheSystemConfiguration(config) {
+    try {
+        localStorage.setItem(
+            CONFIG_CACHE_KEY,
+            JSON.stringify({
+                datos: config,
+                actualizadoEn: Date.now()
+            })
+        );
+    } catch (error) {
+        console.warn('No se pudo guardar la configuración', error);
+    }
+}
+
+function buildTipOptionsFromConfig(config) {
+    const options = [0];
+    const propinas = config?.propinas;
+
+    if (propinas) {
+        ['opcion1', 'opcion2', 'opcion3'].forEach((key) => {
+            const value = parseFloat(propinas[key]);
+            if (!Number.isNaN(value) && value > 0) {
+                options.push(value);
+            }
+        });
+    }
+
+    if (options.length === 1) {
+        return [...DEFAULT_TIP_OPTIONS];
+    }
+
+    while (options.length < DEFAULT_TIP_OPTIONS.length) {
+        options.push(options[options.length - 1]);
+    }
+
+    return options.slice(0, DEFAULT_TIP_OPTIONS.length);
+}
+
+function updateTaxLabel() {
+    const label = document.getElementById('taxLabel');
+    if (label) {
+        label.textContent = `IVA (${ivaPercentage}%):`;
+    }
+}
+
+function setActiveTipButton(value) {
+    tipButtons.forEach((btn) => {
+        const btnValue = parseFloat(btn.dataset.tip) || 0;
+        const shouldBeActive = value !== null && btnValue === value;
+        btn.classList.toggle('active', shouldBeActive);
+    });
+}
+
+function configureTipButtons() {
+    const tipValues = configuredTipOptions;
+
+    tipButtons.forEach((btn, index) => {
+        const value = tipValues[index] ?? 0;
+        btn.dataset.tip = value;
+        const label = btn.querySelector('.tip-label');
+        if (label) {
+            label.textContent = `${value}%`;
+        } else {
+            btn.textContent = `${value}%`;
+        }
+    });
+
+    if (!customTipAmount) {
+        const defaultTip = tipValues.find((value, idx) => idx > 0 && value > 0) ?? 0;
+        selectedTipPercentage = defaultTip;
+        setActiveTipButton(defaultTip);
+    }
+}
+
+function applyConfigurationToPayments(config) {
+    if (!config) {
+        updateTaxLabel();
+        return;
+    }
+
+    const newIva = parseFloat(config?.impuestos?.porcentajeIVA);
+    ivaPercentage = !Number.isNaN(newIva) ? newIva : 16;
+    configuredTipOptions = buildTipOptionsFromConfig(config);
+
+    updateTaxLabel();
+    configureTipButtons();
+    calculateSplitTip();
+    updateSummary();
+}
+
+async function loadSystemConfiguration() {
+    try {
+        const response = await fetch(`${API_URL}/configuracion`, {
+            headers: getAuthHeaders()
+        });
+
+        if (!response.ok) {
+            throw new Error('No se pudo obtener la configuración del restaurante');
+        }
+
+        const data = await response.json();
+        systemConfig = data.datos;
+        cacheSystemConfiguration(systemConfig);
+        applyConfigurationToPayments(systemConfig);
+    } catch (error) {
+        console.warn('Error al cargar configuración del sistema:', error);
+        if (!systemConfig) {
+            const cached = getCachedConfiguration();
+            if (cached) {
+                systemConfig = cached;
+                applyConfigurationToPayments(systemConfig);
+            }
+        }
+    }
+}
+
+function handleStorageConfiguration(event) {
+    if (event.key !== CONFIG_CACHE_KEY || !event.newValue) return;
+
+    try {
+        const parsed = JSON.parse(event.newValue);
+        const config = parsed?.datos || parsed?.data;
+        if (config) {
+            systemConfig = config;
+            applyConfigurationToPayments(systemConfig);
+        }
+    } catch (error) {
+        console.warn('Error al sincronizar configuración desde storage:', error);
+    }
+}
+
+function initializeConfigurationSync() {
+    const cached = getCachedConfiguration();
+    if (cached) {
+        systemConfig = cached;
+    }
+    applyConfigurationToPayments(systemConfig);
+    loadSystemConfiguration();
+    window.addEventListener('storage', handleStorageConfiguration);
+}
 
 // Obtener token de autenticación
 function getAuthToken() {
@@ -590,7 +749,7 @@ function updateSummaryWithSplit() {
             <span class="value">$${splitData.totales.subtotal.toFixed(2)}</span>
         </div>
         <div class="summary-row">
-            <span class="label">IVA Total (16%):</span>
+            <span class="label">IVA Total (${ivaPercentage}%):</span>
             <span class="value">$${splitData.totales.impuestos.toFixed(2)}</span>
         </div>
         <div class="summary-row">
@@ -669,9 +828,9 @@ paymentButtons.forEach(btn => {
 // Botones de propina
 tipButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-        tipButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        selectedTipPercentage = parseInt(btn.dataset.tip);
+        const tipValue = parseFloat(btn.dataset.tip) || 0;
+        setActiveTipButton(tipValue);
+        selectedTipPercentage = tipValue;
         customTipInput.value = '';
         customTipAmount = 0;
         updateSummary();
@@ -684,8 +843,10 @@ customTipInput.addEventListener('input', (e) => {
     customTipAmount = value;
     
     if (value > 0) {
-        tipButtons.forEach(b => b.classList.remove('active'));
+        setActiveTipButton(null);
         selectedTipPercentage = 0;
+    } else if (!Array.from(tipButtons).some(btn => btn.classList.contains('active'))) {
+        setActiveTipButton(selectedTipPercentage);
     }
     
     updateSummary();
@@ -741,5 +902,6 @@ processPaymentBtn.addEventListener('click', processPayment);
 document.addEventListener('DOMContentLoaded', () => {
     if (!checkAuth()) return;
     
+    initializeConfigurationSync();
     loadTables();
 });
