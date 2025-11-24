@@ -16,6 +16,7 @@ function getUserInfo() {
 // Función para cerrar sesión
 function logout() {
     if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+        localStorage.removeItem('authToken');
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         window.location.href = '/views/login.html';
@@ -138,7 +139,7 @@ function createNavbar() {
 // Insertar el navbar en el DOM cuando cargue la página
 document.addEventListener('DOMContentLoaded', function() {
     // Verificar si el usuario está autenticado
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('authToken') || localStorage.getItem('token');
     const currentPath = window.location.pathname;
     
     // Rutas públicas que no requieren autenticación

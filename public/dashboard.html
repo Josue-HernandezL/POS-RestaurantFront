@@ -6,32 +6,157 @@
     <title>Dashboard - Sistema POS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/navbar.css">
     <link rel="stylesheet" href="./assets/css/dashboard.css">
 </head>
 <body>
     <main class="dashboard-content">
-        <h1>Dashboard</h1>
-        <p>Bienvenido al Sistema POS del Restaurante</p>
-        
-        <div class="cards-grid">
-            <div class="card">
-                <h2>📊 Ventas del Día</h2>
-                <p>Consulta las estadísticas de ventas actuales</p>
+        <!-- Header Section -->
+        <div class="dashboard-header">
+            <h1>Dashboard</h1>
+            <p>Resumen de estadísticas y métricas del restaurante</p>
+            <div class="date-filter">
+                <select id="periodSelect">
+                    <option value="today">Hoy</option>
+                    <option value="week">Esta Semana</option>
+                    <option value="month">Este Mes</option>
+                    <option value="custom">Período Personalizado</option>
+                </select>
+                <div id="customDateRange" class="date-range" style="display: none;">
+                    <input type="date" id="fechaInicio" />
+                    <input type="date" id="fechaFin" />
+                    <button id="applyFilter">Aplicar</button>
+                </div>
             </div>
-            <div class="card">
-                <h2>🍽️ Órdenes Activas</h2>
-                <p>Gestiona las órdenes en proceso</p>
+        </div>
+
+        <!-- Main Metrics Cards -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">💰</div>
+                    <h3>Ingresos<br>Totales</h3>
+                </div>
+                <div class="metric-value">$<span id="ingresosTotales">0.00</span></div>
+                <div class="metric-change"><span id="cambioIngresos">+0.0% vs mes anterior</span></div>
             </div>
-            <div class="card">
-                <h2>👥 Personal</h2>
-                <p>Administra usuarios y roles del sistema</p>
+            
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">📋</div>
+                    <h3>Total de<br>Órdenes</h3>
+                </div>
+                <div class="metric-value"><span id="totalOrdenes">0</span></div>
+                <div class="metric-subtitle"><span id="ordenesCompletadas">0</span> completadas</div>
             </div>
-            <div class="card">
-                <h2>📅 Reservaciones</h2>
-                <p>Revisa las reservaciones del día</p>
+            
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">🎯</div>
+                    <h3>Ticket<br>Promedio</h3>
+                </div>
+                <div class="metric-value">$<span id="ticketPromedio">0.00</span></div>
+                <div class="metric-subtitle">Por orden</div>
             </div>
+            
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">📅</div>
+                    <h3>Reservaciones</h3>
+                </div>
+                <div class="metric-value"><span id="reservaciones">0</span></div>
+                <div class="metric-subtitle"><span id="reservacionesConfirmadas">0</span> confirmadas</div>
+            </div>
+        </div>
+
+        <!-- Secondary Metrics -->
+        <div class="secondary-metrics">
+            <div class="secondary-card">
+                <div class="secondary-header">
+                    <div class="secondary-icon">⏳</div>
+                    <h4>Órdenes<br>Pendientes</h4>
+                </div>
+                <div class="secondary-value"><span id="ordenesPendientes">0</span></div>
+            </div>
+            
+            <div class="secondary-card">
+                <div class="secondary-header">
+                    <div class="secondary-icon">👨‍🍳</div>
+                    <h4>En Preparación</h4>
+                </div>
+                <div class="secondary-value"><span id="ordenesEnPreparacion">0</span></div>
+            </div>
+            
+            <div class="secondary-card">
+                <div class="secondary-header">
+                    <div class="secondary-icon">💰</div>
+                    <h4>Propina Promedio</h4>
+                </div>
+                <div class="secondary-value"><span id="propinaPorcentaje">0.0</span>%</div>
+            </div>
+            
+            <div class="secondary-card">
+                <div class="secondary-header">
+                    <div class="secondary-icon">🍽️</div>
+                    <h4>Items en Menú</h4>
+                </div>
+                <div class="secondary-value"><span id="itemsEnMenu">11</span></div>
+            </div>
+        </div>
+
+        <!-- Charts and Tables Section -->
+        <div class="charts-section">
+            <!-- Sales by Category Chart -->
+            <div class="chart-container">
+                <h3>Ventas por Categoría</h3>
+                <div class="categories-list" id="ventasPorCategoria">
+                    <div class="category-item">
+                        <div class="category-info">
+                            <span class="category-name">Platos Principales</span>
+                            <span class="category-amount">$0.00</span>
+                        </div>
+                        <div class="category-bar">
+                            <div class="bar-fill" style="width: 0%"></div>
+                        </div>
+                        <div class="category-percentage">0.0% del total</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Top Products List -->
+            <div class="products-container">
+                <h3>Productos Más Vendidos</h3>
+                <div class="products-list" id="productosMasVendidos">
+                    <div class="product-item">
+                        <div class="product-rank">1</div>
+                        <div class="product-info">
+                            <div class="product-name">Hamburguesa Clásica</div>
+                            <div class="product-category">Platos Principales</div>
+                        </div>
+                        <div class="product-stats">
+                            <div class="product-quantity">0 vendidos</div>
+                            <div class="product-total">$0.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Orders Section -->
+        <div class="recent-orders-section">
+            <h3>Órdenes Recientes</h3>
+            <div class="orders-container" id="ordenesRecientes">
+                <div class="no-orders">
+                    <p>No hay órdenes registradas</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading overlay -->
+        <div id="loadingOverlay" class="loading-overlay">
+            <div class="loading-spinner"></div>
+            <p>Cargando datos del dashboard...</p>
         </div>
     </main>
 
