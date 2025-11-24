@@ -12,8 +12,83 @@
 </head>
 <body>
     <main class="page-content">
-        <h1>Tomar Pedido</h1>
+        <!-- Sección principal de pedidos -->
+        <section class="orders-section">
+            <header class="orders-header">
+                <h1>Tomar Pedido</h1>
+                
+                <!-- Selector de mesa -->
+                <div class="table-selector">
+                    <label for="tableSelect">Mesa:</label>
+                    <select id="tableSelect" class="table-select">
+                        <option value="">Seleccionar mesa...</option>
+                    </select>
+                </div>
+
+                <!-- Filtros de categorías -->
+                <div class="category-filters">
+                    <!-- Las categorías se cargarán dinámicamente desde la API -->
+                </div>
+            </header>
+
+            <!-- Grid de productos -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Los productos se cargarán dinámicamente -->
+            </div>
+
+            <!-- Botón de observación -->
+            <button class="observation-btn" id="observationBtn">Observación</button>
+        </section>
+
+        <!-- Panel lateral del pedido -->
+        <aside class="order-panel">
+            <div class="order-panel-header">
+                <h2>Pedido Actual</h2>
+                <p class="order-table" id="orderTable">Mesa -</p>
+            </div>
+
+            <div class="order-items" id="orderItems">
+                <!-- Los items del pedido se mostrarán aquí -->
+            </div>
+
+            <div class="order-footer">
+                <div class="order-total">
+                    <span>Total:</span>
+                    <span id="orderTotal">$0.00</span>
+                </div>
+                <button class="send-kitchen-btn" id="sendKitchenBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    Enviar a Cocina
+                </button>
+            </div>
+        </aside>
     </main>
+
+    <!-- Modal de observaciones -->
+    <div class="modal-overlay" id="observationOverlay"></div>
+    <div class="observation-modal" id="observationModal">
+        <div class="modal-header">
+            <h3>Observaciones</h3>
+            <button class="close-btn" id="closeObservation">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <textarea 
+                id="observationText" 
+                placeholder="Descripción del platillo" 
+                rows="5"
+            ></textarea>
+        </div>
+        <div class="modal-footer">
+            <button class="save-observation-btn" id="saveObservation">Guardar</button>
+        </div>
+    </div>
 
     <script src="../js/navbar.js"></script>
     <script src="../js/orders.js"></script>
