@@ -12,7 +12,135 @@
 </head>
 <body>
     <main class="page-content">
-        <h1>Pagos</h1>
+        <div class="payments-container">
+            <!-- Columna Izquierda: Formulario -->
+            <div class="left-column">
+                <div class="heading">
+                    <h1>Procesar Pago</h1>
+                </div>
+
+                <!-- Selección de Mesa -->
+                <div class="section-card">
+                    <label class="section-label">Seleccionar Mesa:</label>
+                    <select id="tableSelect" class="custom-select">
+                        <option value="">Seleccionar mesa...</option>
+                    </select>
+                </div>
+
+                <!-- Órdenes Pendientes -->
+                <div class="section-card orders-section" id="ordersSection">
+                    <p class="empty-message">No hay órdenes pendientes para esta mesa</p>
+                </div>
+
+                <!-- Dividir Cuenta -->
+                <div class="section-card split-section" id="splitSection" style="display: none;">
+                    <div class="split-header">
+                        <h2 class="section-title">Dividir Cuenta</h2>
+                        <button id="cancelSplitBtn" class="cancel-split-btn">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Cancelar
+                        </button>
+                    </div>
+                    <div class="split-control">
+                        <label class="input-label">Número de personas:</label>
+                        <div class="split-counter">
+                            <button id="decreasePeople" class="counter-btn">-</button>
+                            <input type="number" id="peopleCount" class="counter-input" value="2" min="2" max="20" readonly>
+                            <button id="increasePeople" class="counter-btn">+</button>
+                        </div>
+                    </div>
+                    <div id="splitItems" class="split-items"></div>
+                    <button id="applySplitBtn" class="apply-split-btn">Aplicar División</button>
+                </div>
+
+                <div class="split-toggle-container" id="splitToggleContainer" style="display: none;">
+                    <button id="toggleSplitBtn" class="toggle-split-btn">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M2.5 10H17.5M10 2.5V17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Dividir Cuenta
+                    </button>
+                </div>
+
+                <!-- Método de Pago -->
+                <div class="section-card payment-methods">
+                    <h2 class="section-title">Método de Pago</h2>
+                    <div class="payment-buttons">
+                        <button class="payment-btn active" data-method="efectivo">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                <path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16 21C18.7614 21 21 18.7614 21 16C21 13.2386 18.7614 11 16 11C13.2386 11 11 13.2386 11 16C11 18.7614 13.2386 21 16 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Efectivo</span>
+                        </button>
+                        <button class="payment-btn" data-method="tarjeta">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                <path d="M28 8H4C2.89543 8 2 8.89543 2 10V22C2 23.1046 2.89543 24 4 24H28C29.1046 24 30 23.1046 30 22V10C30 8.89543 29.1046 8 28 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 14H30" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Tarjeta</span>
+                        </button>
+                        <button class="payment-btn" data-method="transferencia">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                <path d="M4 12L16 4L28 12M6 10V26C6 27.1046 6.89543 28 8 28H24C25.1046 28 26 27.1046 26 26V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 28V18H20V28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Transferencia</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Propina -->
+                <div class="section-card tip-section">
+                    <h2 class="section-title">Propina</h2>
+                    <div class="tip-buttons">
+                        <button class="tip-btn" data-tip="0">0%</button>
+                        <button class="tip-btn active" data-tip="10">10%</button>
+                        <button class="tip-btn" data-tip="15">15%</button>
+                        <button class="tip-btn" data-tip="20">20%</button>
+                    </div>
+                    <div class="custom-tip">
+                        <label class="input-label">Propina Personalizada:</label>
+                        <input type="number" id="customTip" class="custom-input" placeholder="0.00" min="0" step="0.01">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Resumen -->
+            <div class="right-column">
+                <div class="summary-header">
+                    <h2>Resumen de Pago</h2>
+                </div>
+                <div class="summary-content">
+                    <div class="summary-row">
+                        <span class="label">Subtotal:</span>
+                        <span class="value">$<span id="subtotal">0.00</span></span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="label">IVA (16%):</span>
+                        <span class="value">$<span id="tax">0.00</span></span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="label">Propina:</span>
+                        <span class="value">$<span id="tipAmount">0.00</span></span>
+                    </div>
+                    <div class="summary-total">
+                        <span class="label">Total:</span>
+                        <span class="value">$<span id="totalAmount">0.00</span></span>
+                    </div>
+                </div>
+                <div class="summary-footer">
+                    <button id="processPaymentBtn" class="process-btn" disabled>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M15 7L8 14L4 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Procesar Pago</span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script src="../js/navbar.js"></script>
