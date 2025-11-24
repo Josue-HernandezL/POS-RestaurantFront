@@ -11,9 +11,119 @@
     <link rel="stylesheet" href="../assets/css/users-and-roles.css">
 </head>
 <body>
-    <main class="page-content">
-        <h1>Usuarios y Roles</h1>
-    </main>
+    <!-- Main Container -->
+    <div class="users-container">
+        <!-- Header -->
+        <header class="users-header">
+            <div class="header-content">
+                <h1 class="header-title">Gestión de Usuarios</h1>
+                <div class="header-tabs">
+                    <button class="tab-btn active" data-tab="usuarios">Usuarios</button>
+                    <button class="tab-btn" data-tab="roles">Roles y Permisos</button>
+                    <button class="tab-btn" data-tab="autorizaciones">Registro de Autorizaciones</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <main class="users-content">
+            <!-- Tab: Usuarios -->
+            <div class="tab-content active" id="usuarios">
+                <div class="content-header">
+                    <h2 class="content-title">Usuarios del Sistema</h2>
+                    <button class="btn-primary" id="btn-nuevo-usuario">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Nuevo Usuario
+                    </button>
+                </div>
+                <div class="users-grid" id="users-grid">
+                    <!-- Users cards will be inserted here dynamically -->
+                </div>
+            </div>
+
+            <!-- Tab: Roles y Permisos -->
+            <div class="tab-content" id="roles">
+                <h2 class="content-title">Roles y Permisos</h2>
+                <div class="roles-container" id="roles-container">
+                    <!-- Roles will be inserted here dynamically -->
+                </div>
+            </div>
+
+            <!-- Tab: Registro de Autorizaciones -->
+            <div class="tab-content" id="autorizaciones">
+                <h2 class="content-title">Registro de Autorizaciones</h2>
+                <div class="table-container">
+                    <table class="autorizaciones-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha/Hora</th>
+                                <th>Acción</th>
+                                <th>Usuario</th>
+                                <th>Autorizado Por</th>
+                                <th>Detalles</th>
+                            </tr>
+                        </thead>
+                        <tbody id="autorizaciones-tbody">
+                            <tr class="no-data">
+                                <td colspan="5">No hay registros de autorizaciones</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal: Nuevo/Editar Usuario -->
+    <div class="modal-overlay" id="user-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modal-title">Nuevo Usuario</h3>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <form class="user-form" id="user-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre Completo *</label>
+                        <input type="text" id="user-nombre" placeholder="Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico *</label>
+                        <input type="email" id="user-correo" placeholder="usuario@restaurant.com" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Rol *</label>
+                        <select id="user-rol" required>
+                            <option value="">Seleccionar rol...</option>
+                            <option value="dueno">Dueño</option>
+                            <option value="gerente">Gerente</option>
+                            <option value="cajero">Cajero</option>
+                            <option value="mesero">Mesero</option>
+                            <option value="cocinero">Cocinero</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>PIN de Seguridad</label>
+                        <input type="text" id="user-pin" placeholder="4-6 dígitos" maxlength="6">
+                    </div>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="user-activo" checked>
+                    <label for="user-activo">Usuario Activo</label>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary btn-submit">
+                        <span id="submit-text">Crear Usuario</span>
+                    </button>
+                    <button type="button" class="btn-secondary" id="btn-cancel">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script src="../js/navbar.js"></script>
     <script src="../js/users-and-roles.js"></script>
