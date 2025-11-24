@@ -29,8 +29,8 @@ app.get('/login', (req, res) => {
 
 // Registro
 app.get('/registro', (req, res) => {
-  const registroPath = path.join(__dirname, '..', 'public', 'views', 'registro.html');
-  res.sendFile(registroPath);
+  const registerPath = path.join(__dirname, '..', 'public', 'views', 'register.html');
+  res.sendFile(registerPath);
 });
 
 
