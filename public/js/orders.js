@@ -173,9 +173,12 @@ async function loadMenuItems() {
 
 // Renderizar productos
 function renderProducts() {
+    // Filtrar items activos y disponibles
+    const activeItems = allItems.filter(item => item.activo !== false && item.disponibilidad !== false);
+    
     const filteredItems = currentCategory === 'all' 
-        ? allItems 
-        : allItems.filter(item => item.categoriaId === currentCategory);
+        ? activeItems 
+        : activeItems.filter(item => item.categoriaId === currentCategory);
 
     if (filteredItems.length === 0) {
         showMessage('No hay productos disponibles en esta categoría');
