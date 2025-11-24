@@ -12,8 +12,96 @@
 </head>
 <body>
     <main class="page-content">
-        <h1>Gestión de Menú</h1>
+        <!-- Header con botones -->
+        <div class="menu-header">
+            <div class="header-info">
+                <h1>Gestión de Menú</h1>
+                <p>Administra los items del menú del restaurante</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn-primary" id="btnNuevaCategoria">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 5V15M5 10H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Nueva Categoría
+                </button>
+                <button class="btn-primary" id="btnNuevoItem">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 5V15M5 10H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Nuevo Item
+                </button>
+            </div>
+        </div>
+
+        <!-- Contenedor de categorías -->
+        <div class="categories-container" id="categoriesContainer">
+            <!-- Las categorías se cargarán dinámicamente aquí -->
+        </div>
     </main>
+
+    <!-- Modal Nueva Categoría -->
+    <div class="modal" id="modalCategoria">
+        <div class="modal-content">
+            <h2 id="modalCategoryTitle">Nueva Categoría</h2>
+            <form id="formCategoria">
+                <div class="form-group">
+                    <label for="categoriaNombre">Nombre *</label>
+                    <input type="text" id="categoriaNombre" placeholder="Bebidas" required>
+                </div>
+                <div class="form-group">
+                    <label for="categoriaDescripcion">Descripción</label>
+                    <textarea id="categoriaDescripcion" placeholder="Descripción de la categoría" rows="4"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit" id="btnSubmitCategory">Crear Categoría</button>
+                    <button type="button" class="btn-cancel" id="btnCancelarCategoria">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Nuevo/Editar Item -->
+    <div class="modal" id="modalItem">
+        <div class="modal-content">
+            <h2 id="modalItemTitle">Nuevo Item</h2>
+            <form id="formItem">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="itemNombre">Nombre *</label>
+                        <input type="text" id="itemNombre" placeholder="Hamburguesa Clásica" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemCategoria">Categoría *</label>
+                        <select id="itemCategoria" required>
+                            <option value="">Seleccionar categoría</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="itemPrecio">Precio *</label>
+                        <input type="number" id="itemPrecio" placeholder="12.99" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemDisponibilidad">Disponibilidad</label>
+                        <select id="itemDisponibilidad">
+                            <option value="true">Disponible</option>
+                            <option value="false">No Disponible</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="itemDescripcion">Descripción</label>
+                    <textarea id="itemDescripcion" placeholder="Descripción del platillo" rows="4"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit" id="btnSubmitItem">Crear Item</button>
+                    <button type="button" class="btn-cancel" id="btnCancelarItem">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script src="../js/navbar.js"></script>
     <script src="../js/menu-management.js"></script>
